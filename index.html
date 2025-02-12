@@ -78,7 +78,13 @@
         .checkSignInStatus(info.portalUrl + "/sharing")
         .then(handleLoginSuccess)
         .catch(() => {
-          console.log("Not logged in");
+          const portal = new Portal({
+            authMode: "immediate",
+            url: "https://natsec.esrigcazure.com/portal"
+          });
+          portal.load().then(() => {
+              console.log("logged in")
+          });
         });
       function handleLoginSuccess() {
         const portal = new Portal({
